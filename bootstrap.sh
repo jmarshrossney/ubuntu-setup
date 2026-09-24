@@ -31,5 +31,5 @@ package, and stow will not overwrite it:
   just check-all   # dry run; nothing else should conflict
   just link-all
 
-Then come back here and run: just all
+Then come back here and run: just install
 MSG

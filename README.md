@@ -27,7 +27,7 @@ Dotfiles live separately in `~/github.com/jmarshrossney/dotfiles`.
 3. Install everything:
 
    ```sh
-   just all
+   just install
    ```
 
 4. Finish by hand:
@@ -40,12 +40,11 @@ Dotfiles live separately in `~/github.com/jmarshrossney/dotfiles`.
 ## Day to day
 
 ```sh
-just              # list recipes
-just apt          # re-run one script; re-running also upgrades
-just all          # re-run everything
+just install              # re-run everything; re-running also upgrades
+bash install/neovim.sh    # re-run one script
 ```
 
-To add a package, put its name in `packages/apt.txt` or `packages/cargo.txt` (one per line, `#` for comments), then run `just apt` or `just cargo`.
+To add a package, put its name in `packages/apt.txt` or `packages/cargo.txt` (one per line, `#` for comments), then run `bash install/apt.sh` or `bash install/cargo.sh`.
 `apt.sh` installs every valid name and then lists any that have no installation candidate.
 
 To pin a version, pass it to the script:
@@ -59,11 +58,14 @@ To pin a version, pass it to the script:
 `mmdc` runs mermaid-cli in a container that sees only the current directory, so give it relative paths.
 Update it with `podman pull ghcr.io/mermaid-js/mermaid-cli/mermaid-cli`.
 
-## Testing
+## Developer setup
 
 ```sh
-just check        # shellcheck and pre-commit hooks, seconds
-just test-all     # every script in a fresh container, ~20 minutes
+pre-commit install  # run the checks on every commit
+just check          # shellcheck, secrets, whitespace; seconds
+just test-all       # every script in a fresh container, ~20 minutes
 ```
+
+`pre-commit` comes from `install/python.sh`; testing needs rootless podman.
 
 Details in `test/README.md`.

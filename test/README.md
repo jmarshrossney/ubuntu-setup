@@ -4,10 +4,9 @@ Needs rootless podman.
 
 ```sh
 just check                     # shellcheck, secrets, whitespace; seconds
-just install-hooks             # run `just check` on every commit
 just test apt.sh python.sh     # run named scripts in a fresh container
 just test-all                  # run every script, ~20 minutes
-just shell                     # interactive shell in the test image
+bash test/run.sh --shell       # interactive shell in the test image, to debug a failing script
 UBUNTU=24.04 just test apt.sh  # test another release (26.04 by default)
 TIMEOUT=600 just test apt.sh   # per-script timeout in seconds (default 1800)
 ```
