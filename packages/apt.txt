@@ -1,0 +1,146 @@
+# Installed by install/apt.sh. One name per line; '#' starts a comment.
+
+# ---- Build toolchain ------------------------------------------------------ #
+autoconf
+autotools-dev
+build-essential
+clang
+cmake
+gfortran
+manpages-dev
+manpages-posix-dev
+pkg-config
+python3-dev
+
+# ---- Libraries other things build against --------------------------------- #
+libblas-dev
+libfontconfig1-dev
+libfreetype-dev
+libjpeg-dev
+liblapack-dev
+liblapacke-dev
+libpcre2-dev
+libpng-dev
+libssl-dev
+zlib1g-dev
+
+# ---- Command line --------------------------------------------------------- #
+bash-completion   # .bashrc sources /usr/share/bash-completion/bash_completion
+beets
+btop
+curl
+direnv
+dos2unix
+fd-find           # the binary is `fdfind`; Debian renamed it to avoid a clash
+fzf
+git
+gzip
+htop
+httpie
+inxi
+jq
+just
+libimage-exiftool-perl  # exiftool
+pandoc
+parallel
+perl
+rename
+ripgrep
+rmlint
+rsync
+sqlite3
+stow
+subversion
+tmux
+tree
+unar              # rar, 7z and the rest, which unzip will not touch
+unzip
+valgrind
+vim
+wget
+zip
+
+# ---- System, disks and remote access -------------------------------------- #
+coreutils         # on 26.04 this pulls in uutils (Rust); GNU is gnu-coreutils
+findutils
+hdparm
+openssh-client
+sshfs
+ufw               # enabled by hand, see README.desktop.md
+util-linux
+
+# ---- Node, for the neovim provider and anything else that wants npx ------- #
+nodejs
+npm
+
+# ---- Containers ----------------------------------------------------------- #
+podman
+
+# ---- Documents and images ------------------------------------------------- #
+ghostscript       # imagemagick needs it to touch a PDF at all
+graphviz
+hunspell-en-gb
+imagemagick
+inkscape
+poppler-utils     # pdftotext, pdfunite, pdfimages
+python3-tk        # matplotlib's TkAgg backend
+
+# ---- Desktop -------------------------------------------------------------- #
+cmus
+gimp
+gparted
+obs-studio
+vlc
+wl-clipboard      # wl-copy/wl-paste; the Wayland session has no X clipboard
+xclip             # still needed by XWayland apps
+zathura           # pulls in zathura-pdf-poppler; vimtex opens PDFs with it
+
+# ---- TeX Live ------------------------------------------------------------- #
+biber
+latexmk
+texlive-bibtex-extra
+texlive-fonts-extra
+texlive-fonts-recommended
+texlive-latex-base
+texlive-latex-extra
+texlive-latex-recommended
+texlive-luatex
+texlive-xetex
+
+# Beyond the base install: texlive-extra-utils has latexdiff, pdfjam and
+# friends; texlive-science has physics, siunitx, algorithm2e.
+texlive-extra-utils
+texlive-science
+
+# ---- R -------------------------------------------------------------------- #
+r-base
+r-base-dev        # needed to compile any CRAN package from source
+
+# System libraries that common CRAN packages build against
+libgit2-dev       # gert, usethis
+libglpk-dev       # igraph
+libmagickwand-dev # magick
+
+# ---- Geospatial and scientific data formats ------------------------------- #
+gdal-bin
+libgdal-dev
+libudunits2-dev   # units and sf, both the R packages and the C libraries
+proj-bin
+qgis
+
+# HDF5 and NetCDF, serial and MPI builds
+hdf5-tools
+libhdf5-dev
+libhdf5-mpi-dev
+libnetcdf-dev
+libnetcdff-dev
+libnetcdf-mpi-dev
+netcdf-bin
+
+# NetCDF operators: ncks, ncra, ncatted and the rest
+nco
+
+# ---- Not sure if wanted --------------------------------------------------- #
+# ffmpeg
+# mpg123
+# sox

@@ -1,0 +1,6 @@
+# Installed by install/cargo.sh with `cargo install --locked`.
+# One crate per line; pin with e.g. `bottom@0.14.9`.
+
+typst-cli
+bibiman     # TUI for BibLaTeX files
+bottom      # btm

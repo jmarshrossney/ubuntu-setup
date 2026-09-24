@@ -1,0 +1,32 @@
+# A fresh Ubuntu install, plus sudo and a non-root user.
+
+ARG UBUNTU=26.04
+FROM docker.io/library/ubuntu:${UBUNTU}
+
+ARG USERNAME=tester
+ARG TZ=Europe/London
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=${TZ}
+
+RUN apt-get update -qq \
+ && apt-get install -qy --no-install-recommends \
+      ca-certificates \
+      curl \
+      git \
+      gnupg \
+      locales \
+      sudo \
+      tzdata \
+ && locale-gen en_GB.UTF-8
+
+ENV LANG=en_GB.UTF-8
+
+# Free uid 1000 for our user.
+RUN userdel -r ubuntu 2>/dev/null || true
+RUN useradd --create-home --shell /bin/bash --uid 1000 ${USERNAME} \
+ && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} \
+ && chmod 0440 /etc/sudoers.d/${USERNAME}
+
+USER ${USERNAME}
+WORKDIR /home/${USERNAME}
