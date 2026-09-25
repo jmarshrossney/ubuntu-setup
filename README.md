@@ -28,6 +28,7 @@ Dotfiles live separately in `~/github.com/jmarshrossney/dotfiles`.
 2. Log out and back in, so the session picks up the new shell config, fonts and default terminal.
 
 3. Finish by hand:
+   - Replace the https remote with ssh for the dotfiles and ubuntu-setup repos.
    - **Desktop:** follow `README.desktop.md`.
    - **Syncthing:** pair each device at http://127.0.0.1:8384.
      If the script could not start the service, run `systemctl --user enable --now syncthing.service`.
