@@ -25,7 +25,7 @@ TIMEOUT=600 just test apt.sh   # per-script timeout in seconds (default 1800)
 ## Expected failures
 
 - **`mermaid.sh` fails in `test-all`** at `podman pull`, because that is podman inside podman.
-  A clean run is therefore 12 passed, 1 failed.
+  A clean run is therefore 11 passed, 1 failed.
   It passes when run on its own, because podman is not installed yet.
 - **Podman older than 4.7** cannot extract tarballs containing symlinks (`Cannot change mode ... Operation not permitted`), which breaks `gh.sh` and `neovim.sh`.
   `test/run.sh` warns about this.

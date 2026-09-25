@@ -1,19 +1,20 @@
-# Every script test-all runs: bootstrap.sh plus install/*.sh except lib.sh.
-testable := "bootstrap.sh " + `ls install/*.sh | xargs -n1 basename | grep -v '^lib\.sh$' | tr '\n' ' '`
+# Every script test-all runs: install/*.sh except lib.sh. Not bootstrap.sh,
+# which links the dotfiles over ~/.bashrc and runs everything else anyway.
+testable := `ls install/*.sh | xargs -n1 basename | grep -v '^lib\.sh$' | tr '\n' ' '`
 
 _default:
     @just --list
 
 # ---- install ------------------------------------------------------------- #
 
-# Bare machine: install git/just/stow and clone the dotfiles
+# Bare machine: clone and link the dotfiles, then install everything
 bootstrap:
     bash bootstrap.sh
 
 # Every install script, apt.sh first. Re-running also upgrades
 install:
     bash install/apt.sh        # packages/apt.txt, then dist-upgrade. Takes minutes
-    bash install/alacritty.sh  # alacritty from apt, registered as x-terminal-emulator
+    bash install/font.sh       # latest Nerd Font (FiraCode) into ~/.local/share/fonts
     bash install/gh.sh         # latest GitHub CLI release tarball into ~/.local/opt
     bash install/quarto.sh     # latest Quarto .deb
     bash install/obsidian.sh   # latest Obsidian .deb

@@ -32,6 +32,7 @@ curl
 direnv
 dos2unix
 fd-find           # the binary is `fdfind`; Debian renamed it to avoid a clash
+fontconfig        # fc-cache, for install/font.sh
 fzf
 git
 gzip
@@ -54,7 +55,7 @@ subversion
 tmux
 tree
 unar              # rar, 7z and the rest, which unzip will not touch
-unzip
+unzip             # also install/font.sh
 valgrind
 vim
 wget
@@ -86,6 +87,7 @@ poppler-utils     # pdftotext, pdfunite, pdfimages
 python3-tk        # matplotlib's TkAgg backend
 
 # ---- Desktop -------------------------------------------------------------- #
+alacritty         # made the default terminal by xdg-terminals.list in the dotfiles
 cmus
 gimp
 gparted

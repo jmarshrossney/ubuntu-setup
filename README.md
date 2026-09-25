@@ -5,7 +5,7 @@ Dotfiles live separately in `~/github.com/jmarshrossney/dotfiles`.
 
 | Path | Contents |
 |---|---|
-| `bootstrap.sh` | first thing to run on a bare machine |
+| `bootstrap.sh` | first thing to run on a bare machine; runs everything else |
 | `justfile` | entry point for everything else |
 | `install/` | one script per tool, plus shared functions in `lib.sh` |
 | `packages/` | apt and cargo package lists |
@@ -14,26 +14,21 @@ Dotfiles live separately in `~/github.com/jmarshrossney/dotfiles`.
 
 ## Fresh machine
 
-1. Bootstrap. This installs git, just and stow, and clones the dotfiles.
+1. Bootstrap.
+   This installs git, just and stow, clones the dotfiles and links them all, loads the GNOME settings, then runs `just install`.
 
    ```sh
    sudo apt-get install -y git
-   git clone https://github.com/jmarshrossney/ubuntu-setup.git
-   bash ubuntu-setup/bootstrap.sh
+   git clone https://github.com/jmarshrossney/ubuntu-setup.git ~/github.com/jmarshrossney/ubuntu-setup
+   bash ~/github.com/jmarshrossney/ubuntu-setup/bootstrap.sh
    ```
 
-2. Link the dotfiles by following the instructions `bootstrap.sh` prints.
+   Files in the way of the dotfiles, such as Ubuntu's `~/.bashrc`, are moved to `~/.dotfiles-backup/<timestamp>/`.
 
-3. Install everything:
+2. Log out and back in, so the session picks up the new shell config, fonts and default terminal.
 
-   ```sh
-   just install
-   ```
-
-4. Finish by hand:
+3. Finish by hand:
    - **Desktop:** follow `README.desktop.md`.
-   - **Nerd Fonts:** see the `alacritty` package README in the dotfiles repo.
-   - **Default terminal:** `sudo update-alternatives --config x-terminal-emulator` and pick alacritty.
    - **Syncthing:** pair each device at http://127.0.0.1:8384.
      If the script could not start the service, run `systemctl --user enable --now syncthing.service`.
 

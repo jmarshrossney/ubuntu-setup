@@ -1,6 +1,6 @@
 # Desktop setup
 
-Manual steps for the desktop only, after `bootstrap.sh` and `just install`.
+Manual steps for the desktop only, after `bootstrap.sh`.
 
 ## NVIDIA driver
 
