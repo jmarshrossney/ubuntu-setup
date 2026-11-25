@@ -26,10 +26,11 @@ rustup update
 
 # One at a time, so one failed build does not stop the rest.
 failed=()
-while read -r crate; do
+# Words after the crate name are passed through, e.g. `--features cli`.
+while read -ra spec; do
     echo
-    echo "--- cargo install ${crate}"
-    cargo install --locked "$crate" || failed+=("$crate")
+    echo "--- cargo install ${spec[*]}"
+    cargo install --locked "${spec[@]}" || failed+=("${spec[0]}")
 done < <(package_list cargo)
 
 if (( ${#failed[@]} > 0 )); then
